@@ -1,0 +1,46 @@
+﻿<Window x:Class="Ćwiczenie_1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ćwiczenie_1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel Orientation="Horizontal" Margin="10">
+        <StackPanel x:Name="StatusListSection" Orientation="Vertical" Width="390">
+            <TextBlock>Status</TextBlock>
+            <TextBox x:Name="StatusNameText" Width="300"></TextBox>
+            <TextBlock>IsActive</TextBlock>
+            <CheckBox x:Name="IsActiveChkBox"></CheckBox>
+            <TextBlock>Status Weight</TextBlock>
+            <TextBox x:Name="StatusWeightText" Width="300"></TextBox>
+            <Button Click="Button_Click" Content="Add something" Margin="20"></Button>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Width="400">
+            <ComboBox Width="300" Height="30"  ItemsSource="{Binding}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="StatusItem" Orientation="Horizontal" Width="300">
+                            <StackPanel Width="200">
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding Path=Status}"></TextBlock>
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding Path=IsChecked}"></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Width="100">
+                                <TextBlock HorizontalAlignment="Right" FontSize="12" Text="W: "></TextBlock>
+                                <TextBlock FontSize="12" Text="{Binding Path=Waga}"></TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsChecked}" Value="On">
+                                <Setter TargetName="StatusItem" Property="Background" Value="Aquamarine"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsChecked}" Value="Off">
+                                <Setter TargetName="StatusItem" Property="Background" Value="Crimson"></Setter>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                </ComboBox>
+        </StackPanel>
+    </StackPanel>
+</Window>
